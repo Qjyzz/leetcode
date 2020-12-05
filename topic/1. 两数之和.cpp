@@ -11,7 +11,7 @@
 所以返回 [0, 1]
 */
 
-// 遍历两次，由于题目要求同一个元素不能使用两次，
+// 遍历两次，由于题目要求同一个元素不能使用两次，内部循环j从i+1开始
 
 class Solution {
 public:
@@ -31,6 +31,7 @@ public:
     }
 };
 
+// 使用map哈希表，传入参数对target-i进行判断
 
 class Solution {
 public:
