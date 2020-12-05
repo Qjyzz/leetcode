@@ -11,20 +11,34 @@
 原因：342 + 465 = 807
 */
 
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> result;
-        for (int i = 0; i < nums.size(); ++i) {
-            for (int j = i + 1; j < nums.size(); ++j) {
-                if (nums[i] + nums[j] == target)
-                {
-                    result.push_back(i);
-                    result.push_back(j);
-                    return result;
-                }
-            }
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* head = new ListNode(0);
+        ListNode* cur = head;
+        int carry = 0;
+        while(l1 || l2) {
+            int sum = (l1?l1->val:0) + (l2?l2->val:0) + carry;
+            carry = sum / 10;
+            cur->next = l1?l1:l2;
+            cur->next->val = sum % 10;
+            if (l1) l1 = l1->next;
+            if (l2) l2 = l2->next;
+            cur = cur->next;
         }
-        return result;
+        if(carry == 1) {
+            cur->next = new ListNode(1);
+        }
+        return head->next;
     }
 };
